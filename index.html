@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .time {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <video class="video" id="video" width="500px">
+            <source src="https://www.w3schools.com/tags/movie.mp4" type="video/mp4">
+            </source>
+        </video>
+        <div class="time">
+            <input style="width: 450px;" type="range" id="timeLine" />
+            <time id="time-elapsed">00:00</time>
+            <span> / </span>
+            <time id="duration">00:00</time>
+        </div>
+        <div>
+            <button id="play">Play</button>
+            <button id="pause">Puase</button>
+            <button id="restart">
+                << </button>
+                    <button id="deacclerate">
+                        < </button>
+                            <button id="acclearte"> > </button>
+                            <button id="end"> >> </button>
+                            <input type="range" id="volume" />
+                            <button id="mute">Mute</button>
+                            <button id="fullscreen-button">full screen</button>
+        </div>
+        <div>
+            <label>Speed</label>
+            <input type="range" id="speed" />
+        </div>
+        <script>
+            const videoPlayer = document.querySelector('#video');
+            const playButton = document.getElementById('play');
+            const pauseButton = document.getElementById('pause');
+            const restartButton = document.getElementById('restart');
+            const muteButton = document.getElementById('mute');
+            const volumeRange = document.getElementById('volume');
+            volumeRange.max = 1
+            volumeRange.min = 0
+            volumeRange.step = 0.1
+            const endtButton = document.getElementById('end');
+            const accleartetButton = document.getElementById('acclearte');
+            const deaccleratetButton = document.getElementById('deacclerate');
+            const speedRange = document.getElementById('speed');
+            speedRange.max = 5
+            speedRange.min = 0.5
+            speedRange.step = 0.5
+            const timeLine = document.getElementById('timeLine');
+            timeLine.max = 13 //videoPlayer.duration
+            timeLine.value = 0 
+        
+
+
+            playButton.addEventListener("click", function () {
+                videoPlayer.play();
+
+            });
+            pauseButton.addEventListener("click", function () {
+                videoPlayer.pause();
+
+            });
+            restartButton.addEventListener("click", function () {
+                videoPlayer.currentTime = 0;
+                videoPlayer.play();
+            });
+            endtButton.addEventListener("click", function () {
+
+                videoPlayer.currentTime = videoPlayer.duration
+
+            });
+            muteButton.addEventListener("click", function () {
+                videoPlayer.muted = !videoPlayer.muted;
+
+            });
+            accleartetButton.addEventListener("click", function () {
+                videoPlayer.playbackRate += 0.5;
+
+            });
+            deaccleratetButton.addEventListener("click", function () {
+                let speed = videoPlayer.playbackRate
+                if (speed > 0.5) {
+                    videoPlayer.playbackRate -= 0.5;
+                }
+            });
+            speedRange.addEventListener("mousemove", function () {
+
+                videoPlayer.playbackRate = speedRange.value
+            })
+            volumeRange.addEventListener("mousemove", function () {
+
+                videoPlayer.volume = volumeRange.value
+            })
+            timeLine.addEventListener("mousemove", function () {
+
+                videoPlayer.currentTime = timeLine.value
+
+            })
+            const timeElapsed = document.getElementById('time-elapsed');
+            const duration = document.getElementById('duration');
+            function formatTime(timeInSeconds) {
+                const result = new Date(timeInSeconds * 1000).toISOString().substr(11, 8);
+                return {
+                    minutes: result.substr(3, 2),
+                    seconds: result.substr(6, 2),
+                };
+            };
+            function initializeVideo() {
+                const videoDuration = Math.round(video.duration);
+                const time = formatTime(videoDuration);
+                duration.innerText = `${time.minutes}:${time.seconds}`;
+                duration.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`)
+            };
+            video.addEventListener('loadedmetadata', initializeVideo);
+            function updateTimeElapsed() {
+                const time = formatTime(Math.round(video.currentTime));
+                timeElapsed.innerText = `${time.minutes}:${time.seconds}`;
+                timeElapsed.setAttribute('datetime', `${time.minutes}m ${time.seconds}s`)
+                timeLine.value = videoPlayer.currentTime
+            }
+            video.addEventListener('timeupdate', updateTimeElapsed);
+
+
+            const fullscreenButton = document.getElementById('fullscreen-button');
+
+
+            fullscreenButton.addEventListener("click", function () {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else if (document.webkitFullscreenElement) {
+                    document.webkitExitFullscreen();
+                } else if (videoPlayer.webkitRequestFullscreen) {
+                    videoPlayer.webkitRequestFullscreen();
+                } else {
+                    videoPlayer.requestFullscreen();
+                }
+            });
+
+            const fullscreenIcons = fullscreenButton.querySelectorAll('use')
+            function updateFullscreenButton() {
+                fullscreenIcons.forEach(icon => icon.classList.toggle('hidden'));
+                if (document.fullscreenElement) {
+                    fullscreenButton.setAttribute('data-title', 'Exit full screen (f)')
+                } else {
+                    fullscreenButton.setAttribute('data-title', 'Full screen (f)')
+                }
+            }
+            videoPlayer.addEventListener('fullscreenchange', updateFullscreenButton);
+        </script>
+</body>
+
+</html>

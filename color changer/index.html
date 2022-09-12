@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            display: block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="container">
+            <label>Red</label>
+            <input type="range" id="red" />
+        </div>
+        <div class="container">
+            <label>Green</label>
+            <input type="range" id="green" />
+        </div>
+
+        <div class="container">
+            <label>Blue</label>
+            <input type="range" id="blue" />
+        </div>
+        <h1 id="text">
+            Hello World !
+        </h1>
+    </div>
+
+    <script>
+        const text = document.getElementById("text")
+
+        const redRange = document.getElementById("red");
+        const greenRange = document.getElementById("green");
+        const blueRange = document.getElementById("blue");
+        
+        redRange.max = 255;
+        redRange.step = 1;
+        greenRange.max = 255;
+        greenRange.step = 1;
+        blueRange.max = 255;
+        blueRange.step = 1;
+
+        redRange.addEventListener("mousemove",function(){
+            text.style.color = `rgb(${redRange.value}, ${greenRange.value},${blueRange.value})`
+        });
+        greenRange.addEventListener("mousemove",function(){
+            text.style.color = `rgb(${redRange.value}, ${greenRange.value},${blueRange.value})`
+        });
+        blueRange.addEventListener("mousemove",function(){
+            text.style.color = `rgb(${redRange.value}, ${greenRange.value},${blueRange.value})`
+            
+        });
+        
+    </script>
+</body>
+
+</html>

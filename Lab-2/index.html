@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <svg width="1000" height="400" style="border: 2px solid blue;">
+        <text x="190" y="190 " fill="red">c</text>
+        <text x="410" y="190 " fill="red">b</text>
+        <text x="300" y="320 " fill="red">a</text>
+        <polygon points="400, 300, 3.0, 300, 400, 100" fill="red" />
+    </svg>
+    <div>
+        <math xmlns="http://www.w3.org/1998/Math/MathML">
+            <mrow>
+                <mi>C</mi>
+                <mo>=</mo>
+            </mrow>
+            <mrow>
+                <msqrt>
+                    <msup>
+                        <mi>A</mi>
+                        <mi>2</mi>
+                    </msup>
+                    <mo>+</mo>
+                    <msup>
+                        <mi>B</mi>
+                        <mi>2</mi>
+                    </msup>
+                </msqrt>
+            </mrow>
+        </math>
+    </div>
+    <canvas width="300" height="300" style="border: 2px solid blue;" id="canv"></canvas>
+    <script>
+        var c = document.getElementById("canv");
+        var ctx = c.getContext("2d");
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(x, y);
+        var x = 0;
+        var y = 0;
+        var timer = setInterval(function () {
+            x += 10;
+            y += 10;
+            ctx.lineTo(x, y);
+            ctx.stroke();
+            if (x > c.width) {
+                clearInterval(timer);
+                alert("Animation ended")
+            }
+        }, 100); 
+    </script>
+
+</body>
+
+</html>

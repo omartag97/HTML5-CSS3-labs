@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            padding: 0;
+            margin: 0;
+        }
+        .parent {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            
+        }
+
+        .image {
+            background-color: rgba(0, 0, 0, .5);
+            color: white;
+            border: solid 1px white;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            width: 50%;
+            height: 50%;
+            transition: all .3s ease-in;
+        }
+        .image:hover  {
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="parent">
+        <img class="image" src="https://i.pinimg.com/736x/65/11/5d/65115dbeee41a3db74819a0a6a4d163a.jpg"/>
+    </div>
+</body>
+
+</html>

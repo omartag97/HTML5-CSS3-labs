@@ -1,0 +1,77 @@
+
+
+.h-200 {
+    height: 200px;
+}
+
+.h-50 {
+    height: 50px;
+}
+
+.my-2 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+.m-3{
+    margin: 3px;
+}
+.mr-3 {
+    margin-right: 3px;
+}
+
+.ml-3 {
+    margin-left: 3px;
+}
+
+.pt-30 {
+    padding-top: 30px !important;
+    
+}
+
+.w-25 {
+    width: 25%;
+}
+
+.w-50 {
+    width: 50%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.align-items {
+    align-items: center;
+}
+
+.bg-blue {
+    background-color: blue;
+}
+
+.bg-orange {
+    background-color: orange;
+}
+
+.bg-green {
+    background-color: green;
+}
+
+.text-white {
+    color: white;
+    text-align: center;
+}
+
+
+@media screen and ( max-width: 768px){
+    .w-25 {
+        width: 100%;
+    }
+    .w-50 {
+        width: 100%;
+    }
+}
